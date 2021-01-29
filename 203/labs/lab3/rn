@@ -1,0 +1,4 @@
+#/bin/bash
+
+javac LogAnalyzer.java
+java LogAnalyzer sample.log
