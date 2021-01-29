@@ -1,0 +1,14 @@
+[
+{ 
+  "name": "Bob",
+  "place": { "city": "San Luis Obispo",
+             "college": "Cal Poly"
+           },
+  "favorite": [1,2,3,4]
+},
+{ 
+  "something": "or other",
+  "another" : ["something", "or", "other"]
+}
+]
+

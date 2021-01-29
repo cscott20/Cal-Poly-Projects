@@ -1,0 +1,83 @@
+Script started on 2020-05-04 09:44:08-0700
+]0;dekhtyar@ambari-head: ~/369/hadoop/code/lab6dekhtyar@ambari-head:~/369/hadoop/code/lab6$ hadoop jar sf[K[Kj[Ks[Klab5.jar StudentFilter
+20/05/04 09:44:25 INFO client.RMProxy: Connecting to ResourceManager at ambari-node1.csc.calpoly.edu/129.65.157.51:8050
+20/05/04 09:44:25 INFO client.AHSProxy: Connecting to Application History server at ambari-node2.csc.calpoly.edu/129.65.157.52:10200
+20/05/04 09:44:26 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+20/05/04 09:44:26 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /user/dekhtyar/.staging/job_1585859092861_0005
+20/05/04 09:44:26 INFO input.FileInputFormat: Total input files to process : 1
+20/05/04 09:44:26 INFO mapreduce.JobSubmitter: number of splits:1
+20/05/04 09:44:26 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1585859092861_0005
+20/05/04 09:44:26 INFO mapreduce.JobSubmitter: Executing with tokens: []
+20/05/04 09:44:26 INFO conf.Configuration: found resource resource-types.xml at file:/etc/hadoop/3.1.0.0-78/0/resource-types.xml
+20/05/04 09:44:26 INFO impl.YarnClientImpl: Submitted application application_1585859092861_0005
+20/05/04 09:44:26 INFO mapreduce.Job: The url to track the job: http://ambari-node1.csc.calpoly.edu:8088/proxy/application_1585859092861_0005/
+20/05/04 09:44:26 INFO mapreduce.Job: Running job: job_1585859092861_0005
+20/05/04 09:44:31 INFO mapreduce.Job: Job job_1585859092861_0005 running in uber mode : false
+20/05/04 09:44:31 INFO mapreduce.Job:  map 0% reduce 0%
+20/05/04 09:44:36 INFO mapreduce.Job:  map 100% reduce 0%
+20/05/04 09:44:41 INFO mapreduce.Job:  map 100% reduce 100%
+20/05/04 09:44:41 INFO mapreduce.Job: Job job_1585859092861_0005 completed successfully
+20/05/04 09:44:41 INFO mapreduce.Job: Counters: 53
+	File System Counters
+		FILE: Number of bytes read=493
+		FILE: Number of bytes written=467361
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=3377
+		HDFS: Number of bytes written=455
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=21112
+		Total time spent by all reduces in occupied slots (ms)=32832
+		Total time spent by all map tasks (ms)=2639
+		Total time spent by all reduce tasks (ms)=2052
+		Total vcore-milliseconds taken by all map tasks=2639
+		Total vcore-milliseconds taken by all reduce tasks=2052
+		Total megabyte-milliseconds taken by all map tasks=21618688
+		Total megabyte-milliseconds taken by all reduce tasks=33619968
+	Map-Reduce Framework
+		Map input records=100
+		Map output records=16
+		Map output bytes=455
+		Map output materialized bytes=493
+		Input split bytes=123
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=16
+		Reduce shuffle bytes=493
+		Reduce input records=16
+		Reduce output records=16
+		Spilled Records=32
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=109
+		CPU time spent (ms)=2380
+		Physical memory (bytes) snapshot=2602418176
+		Virtual memory (bytes) snapshot=24908640256
+		Total committed heap usage (bytes)=2522873856
+		Peak Map Physical memory (bytes)=2385203200
+		Peak Map Virtual memory (bytes)=8877838336
+		Peak Reduce Physical memory (bytes)=217214976
+		Peak Reduce Virtual memory (bytes)=16030801920
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=3254
+	File Output Format Counters 
+		Bytes Written=455
+]0;dekhtyar@ambari-head: ~/369/hadoop/code/lab6dekhtyar@ambari-head:~/369/hadoop/code/lab6$ exit
+exit
+
+Script done on 2020-05-04 09:44:46-0700

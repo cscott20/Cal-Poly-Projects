@@ -1,0 +1,21 @@
+//Charlie Scott
+//cscott20@calpoly.edu
+
+//Question 1
+db.iowa.aggregate([{$match:{"Category Name":"VODKA 80 PROOF", "Vendor Name":"Diageo Americas", $or:[{"County":"Polk", "County":"Scott"}]}},{$group:{_id:null, vodkaVolume:{$sum:"$Volume Sold (Liters)"}}}, {$project:{_id:0, vodkaVolume:1}} ])
+
+//Question 2
+db.iowa.aggregate([{$group:{_id:"$Vendor Name", "Vendor Number":{$max:"$Vendor Number"}, "counties" : {$addToSet:"$County"}}}, {$project:{_id:"$Vendor Number", "Vendor Name": "$_id", nCounties:{$size:"$counties"}}}])
+//Question 4
+db.iowa.aggregate([{$group:{_id:"$Bottle Volume (ml)"}},{$group:{_id:null, volumeOptions:{$push:"$_id"}}},{$project:{_id:0, volumeOptions:1}} ])
+
+//Question7
+db.iowa.aggregate([{$match:{City:"OAKLAND"}}, {$project: {_id:0, invoice:"$Invoice/Item Number", store:"$Store Name", city: "$City", diff:{$subtract:["$State Bottle Retail", "$State Bottle Cost"]}}},{$sort:{invoice:1}}])
+
+//Question 8
+//This querey sums the total dollar amount of all money spent on vodka purchases by stores in iowa from listed vendors over our dataset.
+
+//Question 9
+db.iowa.aggregate([{$project:{_id:0, County:1, "Sale (Dollars)":1, "Vendor Name":1}},{$match:{"County" : "Polk"}},{$facet:{ diageo:[{$match:{"Vendor Name": "Diageo Americas"}},{$group:{_id:null,  money:{$sum:"$Sale (Dollars)"}}}], jBeam:[{$match:{"Vendor Name": "Jim Beam Brands"}},{$group:{_id:null,  money:{$sum:"$Sale (Dollars)"}}}], other:[{$match:{"Vendor Name":{$ne:["Diageo Americas", "Jim Beam Brands"]}}},{$group:{_id:null, money:{$sum:"$Sale (Dollars)"}}}]}}, {$unwind:"$diageo"}, {$unwind:"$jBeam"}, {$unwind:"$other"},{$project:{_id:0, county: "Polk", diageo:"$diageo.money", jBeam:"$jBeam.money", other:"$other.money"}}])
+
+

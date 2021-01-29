@@ -1,0 +1,91 @@
+//Charlie Scott
+//cscott20@calpoly.edu
+Script started on 2020-05-06 19:41:26-0700
+]0;cscott20@ambari-head: ~/lab5[01;32mcscott20@ambari-head[00m:[01;34m~/lab5[00m$ javac --release 8 -cp hadoop-core-1.2.1.jar StudentFilter.java
+]0;cscott20@ambari-head: ~/lab5[01;32mcscott20@ambari-head[00m:[01;34m~/lab5[00m$ jar cvf StudentFilter.jar *.class
+added manifest
+adding: StudentFilter.class(in = 1700) (out= 951)(deflated 44%)
+adding: StudentFilter$SwitchMapper.class(in = 1600) (out= 676)(deflated 57%)
+adding: StudentFilter$SwitchReducer.class(in = 1644) (out= 693)(deflated 57%)
+]0;cscott20@ambari-head: ~/lab5[01;32mcscott20@ambari-head[00m:[01;34m~/lab5[00m$ hadoop jar StudentFilter.jar StudentFilter
+20/05/06 19:41:52 INFO client.RMProxy: Connecting to ResourceManager at ambari-node1.csc.calpoly.edu/129.65.157.51:8050
+20/05/06 19:41:52 INFO client.AHSProxy: Connecting to Application History server at ambari-node2.csc.calpoly.edu/129.65.157.52:10200
+20/05/06 19:41:52 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+20/05/06 19:41:52 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /user/cscott20/.staging/job_1585859092861_0165
+20/05/06 19:41:53 INFO input.FileInputFormat: Total input files to process : 1
+20/05/06 19:41:53 INFO mapreduce.JobSubmitter: number of splits:1
+20/05/06 19:41:53 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1585859092861_0165
+20/05/06 19:41:53 INFO mapreduce.JobSubmitter: Executing with tokens: []
+20/05/06 19:41:53 INFO conf.Configuration: found resource resource-types.xml at file:/etc/hadoop/3.1.0.0-78/0/resource-types.xml
+20/05/06 19:41:53 INFO impl.YarnClientImpl: Submitted application application_1585859092861_0165
+20/05/06 19:41:53 INFO mapreduce.Job: The url to track the job: http://ambari-node1.csc.calpoly.edu:8088/proxy/application_1585859092861_0165/
+20/05/06 19:41:53 INFO mapreduce.Job: Running job: job_1585859092861_0165
+20/05/06 19:41:58 INFO mapreduce.Job: Job job_1585859092861_0165 running in uber mode : false
+20/05/06 19:41:58 INFO mapreduce.Job:  map 0% reduce 0%
+20/05/06 19:42:03 INFO mapreduce.Job:  map 100% reduce 0%
+20/05/06 19:42:07 INFO mapreduce.Job:  map 100% reduce 100%
+20/05/06 19:42:07 INFO mapreduce.Job: Job job_1585859092861_0165 completed successfully
+20/05/06 19:42:07 INFO mapreduce.Job: Counters: 53
+	File System Counters
+		FILE: Number of bytes read=217
+		FILE: Number of bytes written=466815
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=3377
+		HDFS: Number of bytes written=197
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=20032
+		Total time spent by all reduces in occupied slots (ms)=31136
+		Total time spent by all map tasks (ms)=2504
+		Total time spent by all reduce tasks (ms)=1946
+		Total vcore-milliseconds taken by all map tasks=2504
+		Total vcore-milliseconds taken by all reduce tasks=1946
+		Total megabyte-milliseconds taken by all map tasks=20512768
+		Total megabyte-milliseconds taken by all reduce tasks=31883264
+	Map-Reduce Framework
+		Map input records=100
+		Map output records=7
+		Map output bytes=197
+		Map output materialized bytes=217
+		Input split bytes=123
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=7
+		Reduce shuffle bytes=217
+		Reduce input records=7
+		Reduce output records=7
+		Spilled Records=14
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=125
+		CPU time spent (ms)=2180
+		Physical memory (bytes) snapshot=2594725888
+		Virtual memory (bytes) snapshot=24901050368
+		Total committed heap usage (bytes)=2524446720
+		Peak Map Physical memory (bytes)=2376212480
+		Peak Map Virtual memory (bytes)=8868839424
+		Peak Reduce Physical memory (bytes)=218513408
+		Peak Reduce Virtual memory (bytes)=16032210944
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=3254
+	File Output Format Counters 
+		Bytes Written=197
+]0;cscott20@ambari-head: ~/lab5[01;32mcscott20@ambari-head[00m:[01;34m~/lab5[00m$ exit
+exit
+
+Script done on 2020-05-06 19:42:11-0700

@@ -1,0 +1,35 @@
+//CSC 369. Lab 3 Queries
+//Charlie Scott
+//cscott20@calpoly.edu
+
+//Querey 1
+db.covid.aggregate([{"$match":{"state":"IL"}},{"$sort":{"date":1}}, {"$project":{"positive":{"$ifNull" :["$positive", "$$REMOVE"]}, "death":{"$ifNull" :["$death", "$$REMOVE"]}, "hospitalized": {"$ifNull" :["$hospitalized", "$$REMOVE"]}, "_id":0}}])
+
+//Querey2
+db.covid.aggregate([ {"$match":{"state":"CA", "date":{"$gte":20200401, "$lte":20200430}}} ,{"$sort":{"date":1}}, {"$project":{"positive":1 , "totalTestResults":1, "percentPositive":{"$divide" : ["$positive", "$totalTestResults"]}}}])
+
+//Querey3
+db.covid.aggregate([{"$match":{"date":{"$gte":20200301, "$lte":20200331}}}, {"$group": {"_id":"$state", "avgDeath":{"$avg":"$deathIncrease"}}}, {"$sort":{"avgDeath":-1}}])
+
+//Querey4
+db.covid.aggregate([{"$match":{"date":20200401, "positive": {"$gt":5000}}}, {"$count": "nStates"}]) 
+
+//Querey5
+db.covid.aggregate([{"$match":{"date":20200315}}, {"$sort":{"totalTestResults":-1}}, {"$limit":1}, {"$project":{"state":1, "_id":0, "totalTestResults":1}}])
+
+//Querey6
+db.covid.aggregate([{"$match":{"date":{"$gte": 20200315, "$lte":20200331}}}, {"$group":{"_id": "$date" ,"totalTestResults":{"$max":"$totalTestResults"}, "data":{"$push":{"state":"$state", "test":"$totalTestResults"}}}}, {"$unwind":"$data"}, {"$project": {"date":"$_id", "state":"$data.state", "totalTestResults":1, "max":{"$cmp":["$data.test", "$totalTestResults"]}, "_id":0}},{"$match":{"max":0}}, {"$project": {"date":1, "state":1, "totalTestResults":1}}, {"$sort":{"date":1}}])
+
+//Querey7
+db.covid.aggregate([{"$match":{"$or":[{"state":"CA"}, {"state": "NY"}], "date":{"$gte": 20200320, "$lte":20200405}}},{"$project":{"date":1, "state":1, "_id":0, "ratioCA": {"$cond": {"if":{"$eq":["$state", "CA"]}, "then":{"$divide":["$deathIncrease", "$death"]},"else":0}},"ratioNY": {"$cond": {"if":{"$eq":["$state", "NY"]}, "then":{"$divide":["$deathIncrease", "$death"]},"else":0}}}}, {"$group":{"_id": "$date","date":{"$max":"$date"}, "ratioCA":{"$max":"$ratioCA"}, "ratioNY":{"$max":"$ratioNY"}}}, {"$project": {"_id":0, "date":1, "ratioCA":1, "ratioNY":1}}, {"$sort":{"date":1}}])
+
+//Querey8
+db.covid.aggregate([{"$match":{"date":{"$gte": 20200320, "$lte":20200405},"death":{"$gte":100}}}, {"$group":{"_id": "$date","date":{"$max":"$date"},"stateList": {"$push":{"state":"$state", "death":"$death"}}}}, {"$project": {"_id":0, "date":1, "stateList":1}}, {"$sort":{"date":1}}])
+
+//Querey9
+db.covid.aggregate([{"$match":{"date":20200404}}, {"$project": {"_id":0, "state":1 ,"status":{"$cond": {"if":{"$gt":["$death", {"$multiply" : [.05, "$positive"]}]}, "then" :"poorly", "else":"ok"}}}}])  
+
+//Querey10
+db.covid.aggregate([{"$project": {"_id":0, "date":1, "state":1 ,"status":{"$cond": {"if":{"$gt":["$death", {"$multiply" : [.05, "$positive"]}]}, "then" :"poorly", "else":"ok"}}}}, {"$match":{"status":"poorly"}}, {"$group": {"_id": "$state", "dates":{"$push":"$date"}}}, {"$project": {"state":1, "dates":1, "onDate": {"$in" :[20200404,"$dates"]}}}, {"$match":{"onDate":true}}, {"$project":{"state":"$_id", "nDays":{"$size":"$dates"}, "_id":0}}])
+
+//end of queries
